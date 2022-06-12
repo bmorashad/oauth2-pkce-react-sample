@@ -113,11 +113,18 @@ const Login = (props) => {
         flexDirection: "column",
       }}
     >
-      <h2 style={{ textAlign: "center", maxWidth: "60ch" }}>
+      <span
+        style={{
+          fontSize: "18px",
+          textAlign: "center",
+          maxWidth: "40ch",
+          marginBottom: "15px",
+        }}
+      >
         {error.description}
-      </h2>
+      </span>
       {error.isRetry && (
-        <button style={{ fontSize: "18px" }} onClick={startLoginFlow}>
+        <button style={{ fontSize: "16px" }} onClick={startLoginFlow}>
           Retry
         </button>
       )}

@@ -6,12 +6,12 @@ import {
 } from "react-router-dom";
 import "./App.css";
 import { protect } from "./components/protected-route/protected-route.component";
-import { LoginProvider } from "./contexts/login.context";
+import {
+  LoginProvider,
+  useLoginState,
+} from "./contexts/login.context";
+import Home from "./pages/home-page";
 import LoginPage from "./pages/login-page";
-
-const Home = (props) => {
-  return <div>Hello There</div>;
-};
 
 function App() {
   return (
