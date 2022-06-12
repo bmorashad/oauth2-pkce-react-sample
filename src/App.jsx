@@ -1,4 +1,3 @@
-import config from "./resources/config.json";
 import {
   BrowserRouter,
   Navigate,
@@ -15,7 +14,7 @@ const Home = (props) => {
 
 function App() {
   return (
-    <LoginProvider config={config.gitlab_oauth_config}>
+    <LoginProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Navigate replace to="/home" />} />

@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-// import { withRouter } from "react-router-dom";
 import {
   verifyStateAndFetchToken,
   pkceRedirectLogin,
@@ -9,13 +8,25 @@ import {
   retrieveUserInfo,
 } from "../services/oauth.service";
 import { useNavigate } from "react-router-dom";
-import LoginContext from "../contexts/login.context";
+import { useLoginState } from "../contexts/login.context";
 import Spinner from "../components/spinner/spinner.component";
 
 const Login = (props) => {
+  const validateMissingConfig = (config) => {
+    const validationFeedback = [];
+    Object.entries(config).forEach((entry) => {
+      if (!entry[1]) {
+        validationFeedback.push({
+          key: entry[0],
+        });
+      }
+    });
+    return validationFeedback;
+  };
+
   const navigate = useNavigate();
-  const loginContext = useContext(LoginContext);
-  const { oauthConfig, logIn } = loginContext;
+  const loginState = useLoginState();
+  const { oauthConfig, logIn } = loginState;
   const [error, setError] = useState({
     isError: false,
     isRetry: true,
@@ -23,27 +34,20 @@ const Login = (props) => {
   });
 
   useEffect(() => {
+    const validationFeedback = validateMissingConfig(oauthConfig);
+    if (validationFeedback.length > 0) {
+      setError({
+        isError: true,
+        isRetry: false,
+        description:
+          "Make sure you have added these oauth configs to .env.local. " +
+          JSON.stringify(validationFeedback),
+      });
+      return;
+    }
     const urlQueryParams = new URLSearchParams(
       window.location.search
     );
-    if (!oauthConfig.CLIENT_ID) {
-      setError({
-        isError: true,
-        isRetry: false,
-        description:
-          "Make sure you have added Gitlab OAuth CLIENT_ID to .env file",
-      });
-      return;
-    }
-    if (!oauthConfig.REDIRECT_URI) {
-      setError({
-        isError: true,
-        isRetry: false,
-        description:
-          "Make sure you have added REDIRECT_URI to .env file",
-      });
-      return;
-    }
     if (urlQueryParams.has("error")) {
       setError({
         isError: true,
@@ -62,7 +66,6 @@ const Login = (props) => {
       urlQueryParams.get("state")
     )
       .then(async (tokenData) => {
-        console.log(tokenData);
         let userInfo;
         try {
           userInfo = await retrieveUserInfo(

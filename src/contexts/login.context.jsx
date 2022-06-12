@@ -1,17 +1,24 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, {
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { getNewTokenFromRefreshToken } from "../services/oauth.service";
 
 const LoginContext = React.createContext();
 
-export const LoginProvider = ({ config, children }) => {
-  let CLIENT_ID = import.meta.env.VITE_GITLAB_CLIENT_ID;
-  let REDIRECT_URI = import.meta.env.VITE_REDIRECT_URI;
-  let CLIENT_URL = import.meta.env.VITE_CLIENT_URL;
+const LoginProvider = ({ children }) => {
   let oauthConfig = {
-    ...config,
-    CLIENT_ID,
-    REDIRECT_URI,
-    CLIENT_URL,
+    CLIENT_ID: import.meta.env.VITE_GITLAB_CLIENT_ID,
+    REDIRECT_URI: import.meta.env.VITE_REDIRECT_URI,
+    CLIENT_URL: import.meta.env.VITE_CLIENT_URL,
+    TOKEN_ENDPOINT: import.meta.env.VITE_TOKEN_ENDPOINT,
+    AUTHORIZE_ENDPOINT: import.meta.env.VITE_AUTHORIZE_ENDPOINT,
+    RESPONSE_TYPE: import.meta.env.VITE_RESPONSE_TYPE,
+    SCOPE: import.meta.env.VITE_SCOPE,
+    GRANT_TYPE: import.meta.env.VITE_GRANT_TYPE,
+    USER_INFO_ENDPOINT: import.meta.env.VITE_USER_INFO_ENDPOINT,
   };
   const [onLogin, setOnLogin] = useState(() => () => {});
   const [tokenData, setTokenData] = useState(null);
@@ -84,4 +91,14 @@ export const LoginProvider = ({ config, children }) => {
   );
 };
 
-export default LoginContext;
+const useLoginState = () => {
+  const loginState = useContext(LoginContext);
+  if (loginState === undefined) {
+    throw new Error(
+      "useLoginState must be used within LoginProvider"
+    );
+  }
+  return loginState;
+};
+
+export { LoginProvider, useLoginState };
