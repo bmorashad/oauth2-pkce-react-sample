@@ -1,0 +1,10 @@
+{
+  "gitlab_oauth_config": {
+    "TOKEN_ENDPOINT": "https://gitlab.com/oauth/token",
+    "AUTHORIZE_ENDPOINT": "https://gitlab.com/oauth/authorize",
+    "RESPONSE_TYPE": "code",
+    "SCOPE": "openid api read_api read_user read_repository",
+    "GRANT_TYPE": "authorization_code",
+    "USER_INFO_ENDPOINT": "https://gitlab.com/oauth/userinfo"
+  }
+}

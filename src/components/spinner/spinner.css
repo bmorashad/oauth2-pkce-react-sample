@@ -1,0 +1,55 @@
+.loaderContainer {
+  display: flex;
+  margin-bottom: auto;
+}
+
+.loader {
+  display: block;
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  left: calc(50% - 1em);
+  top: calc(40%);
+  border-radius: 1em;
+  transform-origin: 1em 2em;
+  animation: rotate;
+  animation-iteration-count: infinite;
+  animation-duration: 1000ms;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.d1 {
+  animation-delay: 20ms;
+  background-color: hsla(199, 100%, 45%, 1);
+}
+.d2 {
+  animation-delay: 80ms;
+  background-color: hsla(199, 100%, 55%, 1);
+}
+.d3 {
+  animation-delay: 140ms;
+  background-color: hsla(199, 100%, 65%, 1);
+}
+.d4 {
+  animation-delay: 200ms;
+  background-color: hsla(199, 100%, 75%, 1);
+}
+.d5 {
+  animation-delay: 260ms;
+  background-color: hsla(199, 100%, 85%, 1);
+}
+.d6 {
+  animation-delay: 320ms;
+  background-color: hsla(199, 100%, 90%, 1);
+}
+.d7 {
+  animation-delay: 380ms;
+  background-color: hsla(199, 100%, 95%, 1);
+}
