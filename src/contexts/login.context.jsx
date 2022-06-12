@@ -4,7 +4,7 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { getNewTokenFromRefreshToken } from "../services/oauth.service";
+import { getNewTokenFromRefreshToken } from "@/services/oauth.service";
 
 const LoginContext = React.createContext();
 

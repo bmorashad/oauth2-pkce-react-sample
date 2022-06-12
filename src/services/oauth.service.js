@@ -5,7 +5,7 @@ import {
   getItemFromLocalStorage,
   storeItemInLocalStorage,
   removeItemFromLocalStorage,
-} from "../utils/local-storage.utils";
+} from "@/utils/local-storage.utils";
 
 export const storeToken = (tokenData) => {
   storeItemInLocalStorage("id_token", tokenData);

@@ -5,13 +5,10 @@ import {
   Routes,
 } from "react-router-dom";
 import "./App.css";
-import { protect } from "./components/protected-route/protected-route.component";
-import {
-  LoginProvider,
-  useLoginState,
-} from "./contexts/login.context";
-import Home from "./pages/home-page";
-import LoginPage from "./pages/login-page";
+import { protect } from "@/components/protected-route/protected-route.component";
+import { LoginProvider } from "@/contexts/login.context";
+import Home from "@/pages/home-page";
+import LoginPage from "@/pages/login-page";
 
 function App() {
   return (

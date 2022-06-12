@@ -1,5 +1,5 @@
 import React from "react";
-import { useLoginState } from "../contexts/login.context";
+import { useLoginState } from "@/contexts/login.context";
 
 const Home = (props) => {
   const { userInfo } = useLoginState();

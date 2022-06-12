@@ -1,8 +1,7 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import { Route } from "react-router-dom";
-import { useLoginState } from "../../contexts/login.context";
-import LoginPage from "../../pages/login-page";
+import { useLoginState } from "@/contexts/login.context";
+import LoginPage from "@/pages/login-page";
 
 const ProtectedRoute = ({ children, ...props }) => {
   const loginState = useLoginState();

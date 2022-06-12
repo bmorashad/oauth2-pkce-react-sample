@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   verifyStateAndFetchToken,
   pkceRedirectLogin,
@@ -6,10 +7,9 @@ import {
   getNextRouteFromLocalStorage,
   storeNextRouteInLocalStorage,
   retrieveUserInfo,
-} from "../services/oauth.service";
-import { useNavigate } from "react-router-dom";
-import { useLoginState } from "../contexts/login.context";
-import Spinner from "../components/spinner/spinner.component";
+} from "@/services/oauth.service";
+import { useLoginState } from "@/contexts/login.context";
+import Spinner from "@/components/spinner/spinner.component";
 
 const Login = (props) => {
   const validateMissingConfig = (config) => {
