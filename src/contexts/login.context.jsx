@@ -12,7 +12,6 @@ const LoginProvider = ({ children }) => {
   let oauthConfig = {
     CLIENT_ID: import.meta.env.VITE_CLIENT_ID,
     REDIRECT_URI: import.meta.env.VITE_REDIRECT_URI,
-    CLIENT_URL: import.meta.env.VITE_CLIENT_URL,
     TOKEN_ENDPOINT: import.meta.env.VITE_TOKEN_ENDPOINT,
     AUTHORIZE_ENDPOINT: import.meta.env.VITE_AUTHORIZE_ENDPOINT,
     RESPONSE_TYPE: import.meta.env.VITE_RESPONSE_TYPE,
